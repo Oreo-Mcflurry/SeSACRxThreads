@@ -30,6 +30,8 @@
 		041280782AF1D14000972552 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041280772AF1D14000972552 /* Resource.swift */; };
 		0B019C462BB8255400E89BB4 /* BaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B019C452BB8255400E89BB4 /* BaseProtocol.swift */; };
 		0B019C482BB839BE00E89BB4 /* SampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B019C472BB839BE00E89BB4 /* SampleViewController.swift */; };
+		0B019C632BBD14AE00E89BB4 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B019C622BBD14AE00E89BB4 /* ViewModel.swift */; };
+		0B019C662BBD14EC00E89BB4 /* BirthDayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B019C652BBD14EC00E89BB4 /* BirthDayViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +76,8 @@
 		041280772AF1D14000972552 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		0B019C452BB8255400E89BB4 /* BaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseProtocol.swift; sourceTree = "<group>"; };
 		0B019C472BB839BE00E89BB4 /* SampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleViewController.swift; sourceTree = "<group>"; };
+		0B019C622BBD14AE00E89BB4 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		0B019C652BBD14EC00E89BB4 /* BirthDayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthDayViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +131,7 @@
 		041280222AEF9BAB00972552 /* SeSACRxThreads */ = {
 			isa = PBXGroup;
 			children = (
+				0B019C642BBD14CC00E89BB4 /* ViewModel */,
 				0B019C442BB8254700E89BB4 /* Protocol */,
 				041280532AEF9C1F00972552 /* SignUp */,
 				041280542AEF9C2600972552 /* SignIn */,
@@ -202,8 +207,17 @@
 			isa = PBXGroup;
 			children = (
 				0B019C452BB8255400E89BB4 /* BaseProtocol.swift */,
+				0B019C622BBD14AE00E89BB4 /* ViewModel.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		0B019C642BBD14CC00E89BB4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0B019C652BBD14EC00E89BB4 /* BirthDayViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -351,8 +365,10 @@
 				0412806C2AEFABFE00972552 /* PasswordViewController.swift in Sources */,
 				041280562AEFA04800972552 /* SignInViewController.swift in Sources */,
 				0B019C482BB839BE00E89BB4 /* SampleViewController.swift in Sources */,
+				0B019C632BBD14AE00E89BB4 /* ViewModel.swift in Sources */,
 				041280282AEF9BAB00972552 /* ViewController.swift in Sources */,
 				0B019C462BB8255400E89BB4 /* BaseProtocol.swift in Sources */,
+				0B019C662BBD14EC00E89BB4 /* BirthDayViewModel.swift in Sources */,
 				041280632AEFA0CE00972552 /* PointButton.swift in Sources */,
 				041280242AEF9BAB00972552 /* AppDelegate.swift in Sources */,
 				041280732AEFAD4B00972552 /* NicknameViewController.swift in Sources */,

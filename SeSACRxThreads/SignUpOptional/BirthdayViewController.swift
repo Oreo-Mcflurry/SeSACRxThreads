@@ -61,12 +61,9 @@ final class BirthdayViewController: UIViewController, BaseViewProtocol {
 		return label
 	}()
 
-	let infoText = PublishSubject<String>()
-	let yearText = PublishSubject<Int>()
-	let monthText = PublishSubject<Int>()
-	let dayText = PublishSubject<Int>()
+	private let viewModel = IOBirthDayViewModel()
 	let nextButton = PointButton(title: "가입하기")
-	let disposeBag = DisposeBag()
+	private let disposeBag = DisposeBag()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -114,50 +111,96 @@ extension BirthdayViewController {
 	}
 
 	func configureBinding() {
-		yearText
-			.map { "\($0)년" }
-			.bind(to: yearLabel.rx.text)
+		let input = IOBirthDayViewModel.Input(inputDate: birthDayPicker.rx.date.asObservable())
+
+		let output = viewModel.transform(input: input)
+
+		output.buttonEnabled
+			.bind(to: nextButton.rx.isEnabled)
 			.disposed(by: disposeBag)
 
-		monthText
-			.map { "\($0)월" }
-			.bind(to: monthLabel.rx.text)
+		output.buttonBackColor
+			.bind(to: nextButton.rx.backgroundColor)
 			.disposed(by: disposeBag)
 
-		dayText
-			.map { "\($0)일" }
+		output.dayText
 			.bind(to: dayLabel.rx.text)
 			.disposed(by: disposeBag)
 
-		infoText
+		output.monthText
+			.bind(to: monthLabel.rx.text)
+			.disposed(by: disposeBag)
+
+		output.yearText
+			.bind(to: yearLabel.rx.text)
+			.disposed(by: disposeBag)
+
+		output.infoText
 			.bind(to: infoLabel.rx.text)
 			.disposed(by: disposeBag)
 
-		birthDayPicker.rx.date.bind(with: self) { owner, value in
-			let componet = Calendar.current.dateComponents([.day, .month, .year], from: value)
-			owner.yearText.onNext(componet.year ?? 0)
-			owner.monthText.onNext(componet.month ?? 0)
-			owner.dayText.onNext(componet.day ?? 0)
+		output.infoTextColor
+			.bind(to: infoLabel.rx.textColor)
+			.disposed(by: disposeBag)
 
-			let validation = owner.compareDate(componet.year)
-			owner.nextButton.isEnabled = validation
-			owner.nextButton.backgroundColor = validation ? .blue : .gray
-			owner.infoLabel.textColor = validation ? .black : .red
-			owner.infoText.onNext( validation ? "가입 가능한 나이입니다." : "만 17세 이상만 가입 가능합니다." )
-		}.disposed(by: disposeBag)
+//		viewModel.yearText
+//			.bind(to: yearLabel.rx.text)
+//			.disposed(by: disposeBag)
+//
+//		viewModel.monthText
+//			.bind(to: monthLabel.rx.text)
+//			.disposed(by: disposeBag)
+//
+//		viewModel.dayText
+//			.bind(to: dayLabel.rx.text)
+//			.disposed(by: disposeBag)
+//
+//		viewModel.buttonEnabled
+//			.bind(to: nextButton.rx.isEnabled)
+//			.disposed(by: disposeBag)
+//
+//		viewModel.buttonBackColor
+//			.bind(to: nextButton.rx.backgroundColor)
+//			.disposed(by: disposeBag)
+//
+//		viewModel.infoText
+//			.bind(to: infoLabel.rx.text)
+//			.disposed(by: disposeBag)
+//
+//		viewModel.infoTextColor
+//			.bind(to: infoLabel.rx.textColor)
+//			.disposed(by: disposeBag)
+//
+//		birthDayPicker.rx.date
+//			.bind(to: viewModel.dateInput)
+//			.disposed(by: disposeBag)
 
 		nextButton.rx.tap.bind(with: self) { owner, _ in
 			owner.view.window?.rootViewController = SampleViewController()
 		}.disposed(by: disposeBag)
 	}
-
-	private func compareDate(_ year: Int?) -> Bool {
-		let currentDate = Date()
-		let component = Calendar.current.dateComponents([.year], from: currentDate)
-
-		guard let year else { return false }
-		guard let currnetYear = component.year else { return false }
-
-		return year + 17 < currnetYear
-	}
 }
+
+
+//viewModel.buttonEnabled.bind(with: self) { owner, value in
+//	owner.nextButton.isEnabled = value
+//	owner.nextButton.backgroundColor = value ? .blue : .gray
+//	owner.infoLabel.textColor = value ? .black : .red
+//	owner.infoLabel.text = value ? "가입 가능한 나이입니다." : "만 17세 이상만 가입 가능합니다."
+//}.disposed(by: disposeBag)
+
+//viewModel.buttonEnabled
+//	.bind(to: nextButton.rx.isEnabled)
+//	.disposed(by: disposeBag)
+//
+//viewModel.buttonBackColor
+//	.bind(to: nextButton.rx.backgroundColor)
+//	.disposed(by: disposeBag)
+//
+//viewModel.infoText
+//	.bind(to: infoLabel.rx.text)
+//	.disposed(by: disposeBag)
+//
+//viewModel.infoTextColor
+//	.bind(to: infoLabel.rx.textColor)
+//	.disposed(by: disposeBag)
