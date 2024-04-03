@@ -120,27 +120,27 @@ extension BirthdayViewController {
 			.disposed(by: disposeBag)
 
 		output.buttonBackColor
-			.bind(to: nextButton.rx.backgroundColor)
+			.drive(nextButton.rx.backgroundColor)
 			.disposed(by: disposeBag)
 
 		output.dayText
-			.bind(to: dayLabel.rx.text)
+			.drive(dayLabel.rx.text)
 			.disposed(by: disposeBag)
 
 		output.monthText
-			.bind(to: monthLabel.rx.text)
+			.drive(monthLabel.rx.text)
 			.disposed(by: disposeBag)
 
 		output.yearText
-			.bind(to: yearLabel.rx.text)
+			.drive(yearLabel.rx.text)
 			.disposed(by: disposeBag)
 
 		output.infoText
-			.bind(to: infoLabel.rx.text)
+			.drive(infoLabel.rx.text)
 			.disposed(by: disposeBag)
 
 		output.infoTextColor
-			.bind(to: infoLabel.rx.textColor)
+			.drive(infoLabel.rx.textColor)
 			.disposed(by: disposeBag)
 
 //		viewModel.yearText
